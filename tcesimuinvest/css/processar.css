@@ -18,7 +18,7 @@ h2 {
 }
 
 main {
-    max-width: 400px;
+    max-width: 800px;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -26,15 +26,50 @@ main {
     border-radius: 5px;
 }
 
-p {
-    font-size: 18px;
-    margin-bottom: 15px;
+form {
+    margin-bottom: 20px;
 }
 
-i {
-    margin-right: 10px;
-    font-size: 20px;
-    vertical-align: middle;
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
 }
 
 a {
@@ -52,7 +87,4 @@ footer {
     background-color: #007bff;
     color: #fff;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }

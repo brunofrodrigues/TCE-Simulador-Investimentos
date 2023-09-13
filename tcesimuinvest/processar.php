@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>processar</title>
+    <link rel="stylesheet" href="./css/processar.css">
+    <title>Processar Informações</title>
+
+
 </head>
 
 <body>
@@ -81,9 +84,12 @@
             echo "</tbody></table>";
         }
         ?>
+        <br><br>
+        <a href="./entrada.html">Voltar</a>
     </main>
-    <br><br>
-    <a href="/entrada.html">voltar</a>
+    <footer>
+        <p>&copy; 2023 - Bruno Ferreira Rodrigues & Rafaell Maurício</p>
+    </footer>
 </body>
 
 </html>

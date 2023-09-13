@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historico</title>
+    <link rel="stylesheet" href="./css/historico.css">
+    <title>Historico Financeiro</title>
+    
 </head>
 
 <body>
-
+    <header>
+        <h2>Desenvolvimento WEB - Simulador de Investimentos</h2>
+    </header>
     <main>
           
         <form action="historico.php" method="get">
@@ -23,6 +27,7 @@
             echo "id: <input type='number' name='id' id='id'\>";
           }
           ?>
+          <br>
           <input type="submit" value="buscar">
         </form>
 
@@ -39,12 +44,13 @@
             }
             else
             {
-              echo $simulacao->id;
-              echo $simulacao->nome;
-              echo $simulacao->aporte_inicial;
-              echo $simulacao->rendimento;
-              echo $simulacao->aporte_mensal;
-              echo $simulacao->meses;
+              echo "<ul>";
+              echo "<li>Cliente: $simulacao->nome</li>";
+              echo "<li>Aporte inicial: $simulacao->aporte_inicial</li>";
+              echo "<li>Rendimento: $simulacao->rendimento</li>";
+              echo "<li>Meses: $simulacao->meses</li>";
+              echo "<li>Aporte mensal: $simulacao->aporte_mensal</li>";
+              echo "</ul>";
 
               echo "<table><thead>
                     <tr>
@@ -60,13 +66,19 @@
                             echo "<tr>";
 
                             echo "<td> $mes </td>";
-                            echo "<td> $simulacao->aporte_inicial</td>";
-                            echo "<td> $simulacao->aporte_mensal </td>";
-                            echo "<td> {($simulacao->aporte_inicial * $simulacao->rendimento ) / 100} </td>";
+                            echo "<td>". number_format($simulacao->aporte_inicial, 2, ',', '.') . "</td>";
+                            if ($simulacao->meses == 1) 
+                            {
+                              $simulacao->aporte_mensal == 0;
+                            } 
+                            else 
+                            {
+                              echo "<td>" . number_format($simulacao->aporte_mensal, 2, ',', '.') . "</td>";
+                            }
+                            
+                            echo "<td>" . number_format($simulacao->aporte_inicial * $simulacao->rendimento / 100, 2, ',', '.') . "</td>";
 
-                            $simulacao->aporte_inicial = ($simulacao->aporte_inicial * $simulacao->rendimento / 100) + $simulacao->aporte_inicial;
-
-                            echo "<td> $simulacao->aporte_inicial </td>";
+                            echo "<td>" . $simulacao->aporte_inicial + $simulacao->aporte_mensal + ($simulacao->rendimento*10) .  "</td>";
 
                             $simulacao->aporte_inicial += $simulacao->aporte_mensal;
 
@@ -81,7 +93,9 @@
           
         <a href="index.html">Voltar</a>
     </main>
-    
+    <footer>
+        <p>&copy; 2023 - Bruno Ferreira Rodrigues & Rafaell Maurício</p>
+    </footer>
 </body>
 
 </html>
