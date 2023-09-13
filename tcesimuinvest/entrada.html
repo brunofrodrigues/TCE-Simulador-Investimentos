@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada</title>
+</head>
+
+<body>
+    <main>
+        <form action="/processar.php" method="get">
+
+                <label for="nome">Nome: </label>
+                <input type="text" name="nome" id="nome">
+
+                <label for="aporte_inicial">aporte_inicial: </label>
+                <input type="number" name="aporte_inicial" id="aporte_inicial" value="100">
+
+
+                <label for="meses">meses: </label>
+                <input type="number" name="meses" id="meses" value="12">
+
+
+                <label for="rendimento">rendimento: </label>
+                <input type="number" name="rendimento" id="rendimento" value="0.5">
+
+                <label for="aporte_mensal">aporte_mensal: </label>
+                <input type="number" name="aporte_mensal" id="aporte_mensal" value="50">
+
+                <button type="submit">Calcular</button>
+        </form>
+        <a href="index.html">Voltar</a>
+
+    </main>
+
+</body>
+
+</html>
