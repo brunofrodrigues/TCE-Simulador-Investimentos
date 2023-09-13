@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/processar.css">
+    <link rel="stylesheet" href="css/processar.css">
     <title>Processar Informações</title>
-
-
 </head>
 
 <body>
 
     <main>
+        <header>
+            <h2>Desenvolvimento WEB - Simulador de Investimentos</h2>
+        </header>
         <?php
         $dados = 0;
         if (isset($_GET['nome']) && isset($_GET['aporte_inicial']) && isset($_GET['rendimento']) && isset($_GET['meses']) && isset($_GET['aporte_mensal'])) {
@@ -46,45 +47,44 @@
             echo "</ul>";
 
             echo "<table><thead>
-                    <tr>
-                        <th>Mês</th>
-                        <th>Aporte inicial</th>
-                        <th>Aporte mensal</th>
-                        <th>Rendimento</th>
-                        <th>Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>";
-
-            $aporte_inicial = $simulacao->aporte_inicial; // Salvar o aporte inicial original
-            for ($mes = 1; $mes <= $simulacao->meses; $mes++) {
-
+            <tr>
+                <th>Mês</th>
+                <th>Aporte inicial </th>
+                <th>Aporte mensal</th>
+                <th>Rendimento</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>";
                 echo "<tr>";
-
-                echo "<td> $mes </td>";
-                echo "<td> $aporte_inicial</td>";
-                // Verificar se é o primeiro mês (mês = 1) e definir o aporte mensal como 0
-                if ($mes == 1) {
-                    echo "<td> 0 </td>";
-                } else {
-                    echo "<td> $simulacao->aporte_mensal </td>";
-                }
-                echo "<td>" . $aporte_inicial * $simulacao->rendimento / 100 . "</td>";
-
-                $aporte_inicial = ($aporte_inicial * $simulacao->rendimento / 100) + $aporte_inicial;
-
-                echo "<td> $aporte_inicial </td>";
-
-                if ($mes != 1) {
-                    $aporte_inicial += $simulacao->aporte_mensal;
-                }
-
+                echo "<td>1</td>";
+                echo "<td>". number_format($simulacao->aporte_inicial, 2, ',', '.') . "</td>";
+                echo "<td>0</td>";
+                echo "<td>" . number_format($simulacao->aporte_inicial * ($simulacao->rendimento / 100), 2, ',', '.') . "</td>";
+                echo "<td>" . ($simulacao->aporte_inicial + ($simulacao->aporte_inicial * ($simulacao->rendimento / 100))) .  "</td>";
                 echo "</tr>";
-            }
+
+                $simulacao->aporte_inicial += ($simulacao->aporte_inicial * ($simulacao->rendimento / 100));
+
+                for ($mes = 2; $mes <= $simulacao->meses; $mes++) {
+                    echo "<tr>";
+
+                    echo "<td> $mes </td>";
+                    echo "<td>". number_format($simulacao->aporte_inicial, 2, ',', '.') . "</td>";
+                    echo "<td>" . number_format($simulacao->aporte_mensal, 2, ',', '.') . "</td>";
+                    echo "<td>" . number_format($simulacao->aporte_inicial * $simulacao->rendimento / 100, 2, ',', '.') . "</td>";
+                    echo "<td>" . number_format(($simulacao->aporte_inicial + $simulacao->aporte_mensal) + ($simulacao->aporte_inicial * ($simulacao->rendimento / 100)), 2, ',', '.') .  "</td>";
+
+                    $simulacao->aporte_inicial += $simulacao->aporte_mensal + ($simulacao->aporte_inicial * ($simulacao->rendimento / 100));
+
+                    echo "</tr>";
+                }
             echo "</tbody></table>";
         }
         ?>
+
         <br><br>
+
         <a href="./entrada.html">Voltar</a>
     </main>
     <footer>
